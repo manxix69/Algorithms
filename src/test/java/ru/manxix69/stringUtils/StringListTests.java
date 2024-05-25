@@ -181,7 +181,7 @@ public class StringListTests {
         stringList.add( STRING_TEST3);
         Assertions.assertEquals(1, stringList.size());
         String[] otherList = stringList.toArray();
-        Assertions.assertEquals(2, otherList.length);
+        Assertions.assertEquals(1, otherList.length);
 
     }
 
