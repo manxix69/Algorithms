@@ -27,9 +27,13 @@ public class IntegerListImpl implements IntegerList {
         return addWithOutValidateItem(item);
     }
 
+    private void grow() {
+        integers = Arrays.copyOf(integers, (int) (size() * 1.5) + 1);
+    }
+
     private Integer addWithOutValidateItem(Integer item) {
         if (size() == integers.length) {
-            integers = Arrays.copyOf(integers, size() * 2 + 1);
+            grow();
         }
         integers[size++] = item;
         return item;
@@ -80,7 +84,7 @@ public class IntegerListImpl implements IntegerList {
 
     private void arrayCopy(int srcPos, int destPos, int index) {
         if (size == integers.length) {
-            integers = Arrays.copyOf(integers, size() * 2 + 1);
+            grow();
         }
         System.arraycopy(integers, srcPos, integers, destPos, size() - index);
     }
