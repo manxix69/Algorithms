@@ -87,7 +87,26 @@ public class IntegerListImpl implements IntegerList {
 
     @Override
     public boolean contains(Integer item) {
-        return indexOf(item) != -1;
+        validateItem(item);
+        sortInsertion(integers);
+        int min = 0;
+        int max = this.size() - 1;
+
+        while (min <= max) {
+            int mid = (min + max) / 2;
+
+            if (item == integers[mid]) {
+                return true;
+            }
+
+            if (item < integers[mid]) {
+                max = mid - 1;
+            } else {
+                min = mid + 1;
+            }
+        }
+        return false;
+//        return indexOf(item) != -1;
     }
 
     @Override
@@ -161,6 +180,47 @@ public class IntegerListImpl implements IntegerList {
     private void validateIndex(int index) {
         if (index < 0 || index > size()) {
             throw new ArrayIndexOutOfBoundsException();
+        }
+    }
+
+    private void swapElements(Integer[] arr, int indexA, int indexB) {
+        int tmp = arr[indexA];
+        arr[indexA] = arr[indexB];
+        arr[indexB] = tmp;
+    }
+    @Override
+    public void sortBubble(Integer[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    swapElements(arr, j, j + 1);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void sortSelection(Integer[] arr) {
+        for (int i = 0; i < size() - 1; i++) {
+            int minElementIndex = i;
+            for (int j = i + 1; j < size(); j++) {
+                if (arr[j] < arr[minElementIndex]) {
+                    minElementIndex = j;
+                }
+            }
+            swapElements(arr, i, minElementIndex);
+        }
+    }
+    @Override
+    public void sortInsertion(Integer[] arr) {
+        for (int i = 1; i < size(); i++) {
+            int temp = arr[i];
+            int j = i;
+            while (j > 0 && arr[j - 1] >= temp) {
+                arr[j] = arr[j - 1];
+                j--;
+            }
+            arr[j] = temp;
         }
     }
 }

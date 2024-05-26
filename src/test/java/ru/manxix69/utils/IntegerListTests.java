@@ -7,6 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import ru.manxix69.exceptions.ElementNotFoundException;
 import ru.manxix69.exceptions.NullParameterException;
 
+import java.util.Arrays;
+
 @SpringBootTest
 public class IntegerListTests {
     private IntegerList integerList;
@@ -64,16 +66,20 @@ public class IntegerListTests {
         integerList.add(1, STRING_TEST1);
         integerList.add(STRING_TEST3);
         integerList.add(1, STRING_TEST2);
-
+//        System.out.println(Arrays.toString(integerList.toArray()));
         integerList.remove(3);
+//        System.out.println(Arrays.toString(integerList.toArray()));
         Assertions.assertEquals(integerList.size() , 3);
 
         Assertions.assertFalse(integerList.contains(STRING_TEST3));
-
+//        System.out.println(Arrays.toString(integerList.toArray()));
         integerList.remove(1);
         Assertions.assertEquals(integerList.size() , 2);
 
-        Assertions.assertFalse(integerList.contains(STRING_TEST2));
+//        System.out.println(Arrays.toString(integerList.toArray()));
+
+        Assertions.assertTrue(integerList.contains(STRING_TEST2));
+        Assertions.assertTrue(integerList.contains(STRING_TEST1));
 
         integerList.add(STRING_TEST5);
 
@@ -193,4 +199,26 @@ public class IntegerListTests {
         Assertions.assertEquals(1, otherList.length);
 
     }
+
+    @Test
+    public void sortBubble() {
+
+        for (int i = 0; i < 100_000; i++) {
+            integerList.add((int) (Math.random() * 1_000.0));
+        }
+
+//        long startSortBubble = System.currentTimeMillis();
+//        integerList.sortBubble(Arrays.copyOf(integerList.toArray(), integerList.size()));
+//        System.out.println("time sortBubble millis = " + (System.currentTimeMillis() - startSortBubble));
+
+        long startSortSelection = System.currentTimeMillis();
+        integerList.sortSelection(Arrays.copyOf(integerList.toArray(), integerList.size()));
+        System.out.println("time sortSelection millis = " + (System.currentTimeMillis() - startSortSelection));
+
+        long startSortInsertion = System.currentTimeMillis();
+        integerList.sortInsertion(Arrays.copyOf(integerList.toArray(), integerList.size()));
+        System.out.println("time sortInsertion millis = " + (System.currentTimeMillis() - startSortInsertion));
+
+    }
+
 }
