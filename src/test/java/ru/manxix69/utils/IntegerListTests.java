@@ -78,8 +78,9 @@ public class IntegerListTests {
 
 //        System.out.println(Arrays.toString(integerList.toArray()));
 
-        Assertions.assertTrue(integerList.contains(STRING_TEST2));
         Assertions.assertTrue(integerList.contains(STRING_TEST1));
+        Assertions.assertFalse(integerList.contains(STRING_TEST2));
+        Assertions.assertFalse(integerList.contains(STRING_TEST3));
 
         integerList.add(STRING_TEST5);
 

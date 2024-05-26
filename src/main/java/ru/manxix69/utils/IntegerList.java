@@ -80,5 +80,5 @@ public interface IntegerList {
 
     void sortBubble(Integer[] arr);
     void sortSelection(Integer[] arr);
-    void sortInsertion(Integer[] arr);
+    Integer[] sortInsertion(Integer[] arr);
 }
