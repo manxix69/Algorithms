@@ -1,4 +1,4 @@
-package ru.manxix69.stringUtils;
+package ru.manxix69.utils;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
