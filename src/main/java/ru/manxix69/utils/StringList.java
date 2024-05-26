@@ -1,4 +1,4 @@
-package ru.manxix69.stringUtils;
+package ru.manxix69.utils;
 
 public interface StringList {
 

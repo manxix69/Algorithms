@@ -1,4 +1,4 @@
-package ru.manxix69.stringUtils;
+package ru.manxix69.utils;
 
 import org.springframework.stereotype.Service;
 import ru.manxix69.exceptions.ElementNotFoundException;
